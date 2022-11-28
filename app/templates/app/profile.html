@@ -117,7 +117,7 @@
 
     .rounded-circle {
         max-height: 250px;
-        width: 250px;
+        max-width: 250px;
     }
 
 </style>
@@ -132,7 +132,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="profile-img">
-                <img src="{{profile.profile_pic.url}}" alt="Admin" class="rounded-circle" width="150">
+                <img src="{{profile.profile_pic.url}}" alt="Admin" class="rounded-circle" width="auto">
             </div>
             {% comment %} <div class="file btn btn-lg btn-primary">
                 Change Photo
@@ -158,9 +158,10 @@
             </div>
         </div>
 
-        <div class="col-md-2">
-            <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+        <a href="{% url 'edit-profile' %}" style=""> <div class="col-md-2"><input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+            </a>
         </div>
+       
     </div>
     <div class="row">
         <div class="col-md-4">
