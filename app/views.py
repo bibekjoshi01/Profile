@@ -1,14 +1,18 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from . models import Profile
-from . forms import *
+from .models import Profile
+from .forms import *
+
 
 def profile(request):
-    details = Profile.objects.get(id=3)
+    details = Profile.objects.first()
     context = {
-        'profile':details,
+        'profile': details,
+        'hobbies': Hobbies.objects.filter(profile=details)
+
     }
     return render(request, 'app/profile.html', context)
+
 
 def edit_profile(request):
     user = Profile.objects.get(id=3)
@@ -19,9 +23,8 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             return redirect('/')
-    context ={
-        'form':form,
+    context = {
+        'form': form,
 
     }
     return render(request, 'app/edit_profile.html', context)
-
